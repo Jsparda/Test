@@ -38,12 +38,12 @@ int main(){
 						for(i=0;i<operandos;i++){
 							printf("ingrese el operando #%d \n",(i+1));
 							scanf("%d",&auxiliar);
-							operandossumas[i]=auxiliar;
+							operandossuma[i]=auxiliar;
 						}
 						printf("operando %d [",auxiliar2);
 						for(i=0;i<operandos;i++){
 							printf("%d ",operandossuma[i]);
-							printf("")
+							printf("");
 						}
 					}
 				}
