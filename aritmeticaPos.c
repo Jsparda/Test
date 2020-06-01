@@ -4,7 +4,7 @@
 int main(){
 	//Seccion de declaracion de varibales y apuntadores.
 	int opcion, opcionsm,numop,i,auxiliarop,dig; //opcion es para el menu principal y opcionsm es para los submenus.
-	int j=0;
+	int j=0,cont=1;
 	int **operando; //declaracion de los apuntadores
 	char *ch;
 
@@ -31,19 +31,19 @@ int main(){
 					//suma en binario
 					printf("Proporcione el numero de operandos que tendra la suma de binarios\n");
 					printf("NOTA: el numero maximo de operandos debe ser 20...\n");
-					scanf("%d",&numop);
-					if(numop > 0 && numop <21){
-						operando=(int *) malloc(sizeof(int) * numop);
+					scanf("%d",&numop); //Escaneo el numero de operadores 
+					if(numop > 0 && numop <21){ //pregunto si es valido el numero de operadores
+						operando=(int *) malloc(sizeof(int) * numop);//si es valido, reservo memoria para los numop operandos
 						printf("Ingreso de los operandos\n");
 						printf("La logitud de cada operando debe ser como maximo 30\n");
-						for(i=0;i<numop;i++){
-							operando=(int *)malloc(sizeof(int)*30);
+						for(i=0;i<numop;i++){ //ciclo para preguntar los operandos
+							operando=(int *)malloc(sizeof(int)*30);//reservo memoria para la matriz de operandos
 							printf("ingrese el operando #%d: ",(i+1));
-							scanf("%d",&auxiliarop);
-							while(auxiliarop>0){
-								dig=auxiliarop%10;
-								if(dig == 0 || dig == 1){
-									operando[i][j]=dig;
+							scanf("%d",&auxiliarop);//lee el numero binario completo
+							while(auxiliarop>0){//este ciclo descompones el numero binario en digitos
+								dig=auxiliarop%10; 
+								if(dig == 0 || dig == 1){//Condicion de pertenencia al sistema binario
+									operando[i][j]=dig;//una vez partidos, se guardan en la matriz
 									j++;
 								}
 								else{
@@ -53,7 +53,19 @@ int main(){
 							}
 							j=0;
 						}
+						for(i=sizeof(operando);i>=0;i--){ //impresion de la matriz de operandos
+							printf("Operando #%d: [ ",cont);
+							for(j=sizeof(operando);j>=0;j++){
+								//printf("Opernado #%d : [ ",cont);
+								printf("%d ",operando[i][j]);
+								//cont++;
+							}
+							printf(" ]\n");
+							cont++;
+						}
 					}
+					else
+						printf("Fuera de rango permitido...\n");
 				}
 				else if(opcionsm == 2){
 					//Suma en octal
