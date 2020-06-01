@@ -6,6 +6,7 @@ int main(){
 	int opcion, opcionsm,numop,i,auxiliarop,dig; //opcion es para el menu principal y opcionsm es para los submenus.
 	int j=0,cont=1;
 	int **operando; //declaracion de los apuntadores
+	char **operandoh;
 	char *ch;
 
 	//Seccion de menu.
@@ -38,7 +39,7 @@ int main(){
 						printf("La logitud de cada operando debe ser como maximo 30\n");
 						for(i=0;i<numop;i++){ //ciclo para preguntar los operandos
 							operando=(int *)malloc(sizeof(int)*30);//reservo memoria para la matriz de operandos
-							printf("ingrese el operando #%d: ",(i+1));
+							printf("ingrese el operando #%d: ",cont);
 							scanf("%d",&auxiliarop);//lee el numero binario completo
 							while(auxiliarop>0){//este ciclo descompones el numero binario en digitos
 								dig=auxiliarop%10; 
@@ -51,8 +52,10 @@ int main(){
 									break;
 								}
 							}
+							cont++;
 							j=0;
 						}
+						cont=1;
 						for(i=sizeof(operando);i>=0;i--){ //impresion de la matriz de operandos
 							printf("Operando #%d: [ ",cont);
 							for(j=sizeof(operando);j>=0;j++){
@@ -71,11 +74,60 @@ int main(){
 					//Suma en octal
 					printf("Proporcione el numero de operandos que trendra la suma de octales\n");
 					printf("NOTA: el numero maximo de operandos debe ser 20...\n");
+                    			scanf("%d",&numop); //Escaneo el numero de operadores 
+					if(numop > 0 && numop <21){ //pregunto si es valido el numero de operadores
+						operando=(int *) malloc(sizeof(int) * numop);//si es valido, reservo memoria para los numop operandos
+						printf("Ingreso de los operandos\n");
+						printf("La logitud de cada operando debe ser como maximo 30\n");
+						for(i=0;i<numop;i++){ //ciclo para preguntar los operandos
+							operando=(int *)malloc(sizeof(int)*30);//reservo memoria para la matriz de operandos
+							printf("ingrese el operando #%d: ",cont);
+							scanf("%d",&auxiliarop);//lee el numero binario completo
+							while(auxiliarop>0){//este ciclo descompones el numero octal en digitos
+								dig=auxiliarop%10; 
+								if(dig >=0 || dig < 8){//Condicion de pertenencia al sistema octal
+									operando[i][j]=dig;//una vez partidos, se guardan en la matriz
+									j++;
+								}
+								else{
+									printf(" %d no es parte del sistema octal",dig);
+									break;
+								}
+							}
+							cont++;
+							j=0;
+						}
+						cont=1;
+						for(i=sizeof(operando);i>=0;i--){ //impresion de la matriz de operandos
+							printf("Operando #%d: [ ",cont);
+							for(j=sizeof(operando);j>=0;j++){
+								//printf("Opernado #%d : [ ",cont);
+								printf("%d ",operando[i][j]);
+								//cont++;
+							}
+							printf(" ]\n");
+							cont++;
+						}
+					}
+					else
+						printf("Fuera de rango permitido...\n");
 				}
 				else if(opcionsm == 3){
 					//suma en hexadecimal
 					printf("Proporciones el numero de operandos que tendra la suma de hexadecimales\n");
 					printf("NOTA: el numero maximo de operandos debe ser 20...\n");
+					scanf("%d",&numop);
+					if(numop > 0 && numop<21){
+						operandoh=(char *)malloc(sizeof(char)*numop);
+						printf("Ingreso de los operandos...\n");
+						printf("La longitud de de cada operando debe ser coo maximo 30\n");
+						for(i=0;i<numop;i++){
+							operandoh=(char*)malloc(sizeof(char)*30);
+							printf("Ingrese el operando #%d: ",cont);
+							gets(operandoh);
+							//if(operandoh
+						}
+					}
 				}
 				else if(opcionsm == 4){
 					//salida del submenu de suma
@@ -108,14 +160,83 @@ int main(){
 					//resta en binario
 					printf("Proporcione el numero de operandos que tendra la resta de binarios\n");
 					printf("NOTA: el numero maximo de operandos debe ser 20...\n");
-					//if(ope)
+					scanf("%d",&numop); //Escaneo el numero de operadores 
+					if(numop > 0 && numop <21){ //pregunto si es valido el numero de operadores
+						operando=(int *) malloc(sizeof(int) * numop);//si es valido, reservo memoria para los numop operandos
+						printf("Ingreso de los operandos\n");
+						printf("La logitud de cada operando debe ser como maximo 30\n");
+						for(i=0;i<numop;i++){ //ciclo para preguntar los operandos
+							operando=(int *)malloc(sizeof(int)*30);//reservo memoria para la matriz de operandos
+							printf("ingrese el operando #%d: ",cont);
+							scanf("%d",&auxiliarop);//lee el numero binario completo
+							while(auxiliarop>0){//este ciclo descompones el numero binario en digitos
+								dig=auxiliarop%10; 
+								if(dig == 0 || dig == 1){//Condicion de pertenencia al sistema binario
+									operando[i][j]=dig;//una vez partidos, se guardan en la matriz
+									j++;
+								}
+								else{
+									printf(" %d no es parte del sistema binario",dig);
+									break;
+								}
+							}
+							cont++;
+							j=0;
+						}
+						cont=1;
+						for(i=sizeof(operando);i>=0;i--){ //impresion de la matriz de operandos
+							printf("Operando #%d: [ ",cont);
+							for(j=sizeof(operando);j>=0;j++){
+								//printf("Opernado #%d : [ ",cont);
+								printf("%d ",operando[i][j]);
+								//cont++;
+							}
+							printf(" ]\n");
+							cont++;
+						}
+					}
 				}
-				
 				else if(opcionsm == 2){
 					//resta en octal
 					printf("Proporcione el numero de operandos que tendra la resta de octales\n");
-					printf("NOTA: el numero maximo de operandos debe ser 20...\n");
+					printf("NOTA: el numero maximo de operandos debe ser 20...\n");					
+					scanf("%d",&numop); //Escaneo el numero de operadores 
+					if(numop > 0 && numop <21){ //pregunto si es valido el numero de operadores
+						operando=(int *) malloc(sizeof(int) * numop);//si es valido, reservo memoria para los numop operandos
+						printf("Ingreso de los operandos\n");
+						printf("La logitud de cada operando debe ser como maximo 30\n");
+						for(i=0;i<numop;i++){ //ciclo para preguntar los operandos
+							operando=(int *)malloc(sizeof(int)*30);//reservo memoria para la matriz de operandos
+							printf("ingrese el operando #%d: ",cont);
+							scanf("%d",&auxiliarop);//lee el numero octal completo
+							while(auxiliarop>0){//este ciclo descompone el numero octal en digitos
+								dig=auxiliarop%10; 
+								if(dig >= 0 || dig < 8){//Condicion de pertenencia al sistema octal
+									operando[i][j]=dig;//una vez partidos, se guardan en la matriz
+									j++;
+								}
+								else{
+									printf(" %d no es parte del sistema binario",dig);
+									break;
+								}
+							}
+							cont++;
+							j=0;
+						}
+						cont=1;
+						for(i=sizeof(operando);i>=0;i--){ //impresion de la matriz de operandos
+							printf("Operando #%d: [ ",cont);
+							for(j=sizeof(operando);j>=0;j++){
+								//printf("Opernado #%d : [ ",cont);
+								printf("%d ",operando[i][j]);
+								//cont++;
+							}
+							printf(" ]\n");
+							cont++;
+						}
+					}
 				}
+
 				else if(opcionsm ==3){
 					//resta en hexadecimal
 					printf("Proporcione el numero de operandos que tendra la resta de hexadecimales\n");
@@ -137,6 +258,7 @@ int main(){
 			ch="";
 		}//fin menu resta
 		else if(opcion == 3){
+			printf("adios\n");
 			//break;
 		}//salida del programa
 		else{
@@ -148,5 +270,3 @@ int main(){
 	printf("Saliendo del programa... \n");
 return 0;
 }
-			
-
