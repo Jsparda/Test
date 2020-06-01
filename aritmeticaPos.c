@@ -3,8 +3,9 @@
 
 int main(){
 	//Seccion de declaracion de varibales y apuntadores.
-	int opcion, opcionsm,operandos,i,auxiliar,auxiliar2; //opcion es para el menu principal y opcionsm es para los submenus.
-	int *operandossuma; //declaracion de los apuntadores
+	int opcion, opcionsm,numop,i,auxiliarop,dig; //opcion es para el menu principal y opcionsm es para los submenus.
+	int j=0;
+	int **operando; //declaracion de los apuntadores
 	char *ch;
 
 	//Seccion de menu.
@@ -30,20 +31,27 @@ int main(){
 					//suma en binario
 					printf("Proporcione el numero de operandos que tendra la suma de binarios\n");
 					printf("NOTA: el numero maximo de operandos debe ser 20...\n");
-					scanf("%d",&operandos);
-					if(operandos > 0 && operandos <21){
-						operandossuma=(int *) malloc(sizeof(int) * operandos);
+					scanf("%d",&numop);
+					if(numop > 0 && numop <21){
+						operando=(int *) malloc(sizeof(int) * numop);
 						printf("Ingreso de los operandos\n");
-						printf("La logitud de cada operando debe ser como maximo 30");
-						for(i=0;i<operandos;i++){
-							printf("ingrese el operando #%d \n",(i+1));
-							scanf("%d",&auxiliar);
-							operandossuma[i]=auxiliar;
-						}
-						printf("operando %d [",auxiliar2);
-						for(i=0;i<operandos;i++){
-							printf("%d ",operandossuma[i]);
-							printf("");
+						printf("La logitud de cada operando debe ser como maximo 30\n");
+						for(i=0;i<numop;i++){
+							operando=(int *)malloc(sizeof(int)*30);
+							printf("ingrese el operando #%d: ",(i+1));
+							scanf("%d",&auxiliarop);
+							while(auxiliarop>0){
+								dig=auxiliarop%10;
+								if(dig == 0 || dig == 1){
+									operando[i][j]=dig;
+									j++;
+								}
+								else{
+									printf(" %d no es parte del sistema binario",dig);
+									break;
+								}
+							}
+							j=0;
 						}
 					}
 				}
